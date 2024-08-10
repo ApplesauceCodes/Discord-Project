@@ -1,11 +1,12 @@
 // eukee: This file was yoinked from https://ui.shadcn.com/docs/installation/manual.
 
-const { fontFamily } = require("tailwindcss/defaultTheme")
+// const { fontFamily } = require("tailwindcss/defaultTheme") (replacing with the ES6-style import below)
+import { fontFamily } from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     container: {
       center: true,

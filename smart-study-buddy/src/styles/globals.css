@@ -1,3 +1,7 @@
+/*
+  If the below three lines are bringing up a warning (like "unknown at rule @tailwind css(unknownAtRules)"), 
+  you should get the "PostCSS Language Support" VSCode extension.
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
