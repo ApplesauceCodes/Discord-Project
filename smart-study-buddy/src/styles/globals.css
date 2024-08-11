@@ -1,14 +1,28 @@
-@import "@fontsource-variable/inter"; 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    font-family: "Inter Variable", sans-serif;
+	font-family: "Inter Variable", sans-serif;
+	/* font-family: "Averia Serif Libre", system-ui; */
 }
 
-h1 {
-    font-family: "Inter Variable", sans-serif;
-    font-weight: 700;
+handwritten {
+	font-family: "Averia Serif Libre", system-ui;
+}
+
+.scrawlunder {
+	stroke-dasharray: 500; /* Set to the length of your path */
+	stroke-dashoffset: 500; /* Start with the path hidden */
+	stroke: red;
+	animation: drawUnderline 2s forwards;
+}
+
+@keyframes drawUnderline {
+	from {
+		stroke-dashoffset: 200;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
 }
