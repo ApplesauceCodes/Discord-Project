@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './QuizPage.css';
 
-const QuizPage = () => {
-    //Temp Questions
-  const initialQuestions = [
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+interface Answer {
+  question: string;
+  selected: string;
+  correct: string;
+}
+
+const QuizPage: React.FC = () => {
+  // Temp Questions
+  const initialQuestions: Question[] = [
     { question: 'What is 2 + 2?', options: ['3', '4', '5'], answer: '4' },
     { question: 'What is the capital of France?', options: ['Berlin', 'Madrid', 'Paris'], answer: 'Paris' },
     { question: 'What is the color of the sky?', options: ['Blue', 'Green', 'Red'], answer: 'Blue' },
@@ -11,10 +23,10 @@ const QuizPage = () => {
     { question: 'What is the square root of 9?', options: ['2', '3', '4'], answer: '3' }
   ];
 
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
 
   // Shuffle questions and reset state on load
   useEffect(() => {
@@ -24,12 +36,16 @@ const QuizPage = () => {
     setQuizCompleted(false);
   }, []);
 
-  const shuffleArray = (array) => {
+  const shuffleArray = (array: any[]): any[] => {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const handleOptionClick = (option) => {
-    setAnswers([...answers, { question: questions[currentQuestionIndex].question, selected: option, correct: questions[currentQuestionIndex].answer }]);
+  const handleOptionClick = (option: string) => {
+    setAnswers([...answers, { 
+      question: questions[currentQuestionIndex].question, 
+      selected: option, 
+      correct: questions[currentQuestionIndex].answer 
+    }]);
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
@@ -37,7 +53,7 @@ const QuizPage = () => {
     }
   };
 
-  const calculateScore = () => {
+  const calculateScore = (): number => {
     return answers.filter(answer => answer.selected === answer.correct).length;
   };
 
